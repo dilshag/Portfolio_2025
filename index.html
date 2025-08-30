@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- AOS LIBRARY -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <style>
         :root {
             --primary-color: #6c63ff;
@@ -17,12 +22,14 @@
             --dark-color: #2a2a72;
             --light-color: #f8f9fa;
             --text-color: #333333;
+            --nav-bg-color: rgba(42, 42, 114, 0.95); /* New navbar color */
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             color: var(--text-color);
             overflow-x: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
         }
 
         /* Video Background */
@@ -49,7 +56,9 @@
         /* Navigation */
         .navbar {
             transition: all 0.3s ease;
-            padding: 20px 0;
+            padding: 15px 0;
+            background: var(--nav-bg-color) !important;
+            backdrop-filter: blur(5px);
         }
 
         .navbar-brand {
@@ -66,6 +75,62 @@
 
         .navbar-dark .navbar-nav .nav-link:hover {
             color: var(--primary-color);
+        }
+
+        /* Navbar toggler customization */
+        .navbar-toggler {
+            border: none;
+            padding: 0;
+            width: 30px;
+            height: 20px;
+            position: relative;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: none;
+            position: relative;
+            height: 2px;
+            width: 24px;
+            background-color: white;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler-icon::before,
+        .navbar-toggler-icon::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            height: 2px;
+            width: 24px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler-icon::before {
+            top: -8px;
+        }
+
+        .navbar-toggler-icon::after {
+            top: 8px;
+        }
+
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+            background-color: transparent;
+        }
+
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+            transform: rotate(-45deg);
+            top: 0;
         }
 
         /* Hero Section */
@@ -158,30 +223,44 @@
             transform: scale(1.05);
         }
 
-        .about-text {
-            padding-left: 30px;
-            animation: fadeInRight 1s ease;
+        .about-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
         }
 
-        .skill-bar {
-            margin-bottom: 15px;
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
 
-        .skill-bar h6 {
-            font-weight: 600;
-            margin-bottom: 5px;
+        .about-social {
+            margin-top: 20px;
         }
 
-        .progress {
-            height: 10px;
-            border-radius: 5px;
-            background-color: #e9ecef;
+        .about-social a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
         }
 
-        .progress-bar {
-            background-color: var(--primary-color);
-            border-radius: 5px;
+        .about-social a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
         }
+
 
         /* Services Section */
         .services {
@@ -210,6 +289,10 @@
         }
 
         /* Projects Section */
+        .projects {
+            background-color: white;
+        }
+
         .project-card {
             border-radius: 15px;
             overflow: hidden;
@@ -362,8 +445,128 @@
             opacity: 0;
         }
 
+        /* Timeline style education */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 3px solid white;
+        }
+
         /* Responsive Styles */
-        @media (max-width: 992px) {
+        /* Extra small devices (phones, 576px and down) */
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .btn-primary {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                margin-bottom: 40px;
+            }
+
+            .about-card, .education-card, .skill-card, .service-card {
+                padding: 20px;
+            }
+
+            .contact-form {
+                padding: 20px;
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .timeline-item::before {
+                left: -1.8rem;
+                width: 16px;
+                height: 16px;
+            }
+
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+
+            .profile-img {
+                margin-bottom: 20px;
+            }
+
+            .skill-icon {
+                font-size: 2rem;
+            }
+
+            .tech-logo {
+                height: 40px;
+            }
+        }
+
+        /* Small devices (landscape phones, 576px and up) */
+        @media (min-width: 576px) and (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .timeline::before {
+                left: 12px;
+            }
+
+            .timeline-item::before {
+                left: -2.3rem;
+            }
+        }
+
+        /* Medium devices (tablets, 768px and up) */
+        @media (min-width: 768px) and (max-width: 992px) {
             .hero-content h1 {
                 font-size: 2.8rem;
             }
@@ -376,33 +579,68 @@
                 padding-left: 0;
                 margin-top: 30px;
             }
-        }
 
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.2rem;
+            .timeline {
+                padding-left: 2rem;
             }
 
-            .hero-content p {
-                font-size: 1.2rem;
+            .timeline-item::before {
+                left: -2.3rem;
             }
 
-            section {
-                padding: 70px 0;
-            }
-
-            .section-title h2 {
-                font-size: 2rem;
+            .navbar-nav {
+                background: var(--nav-bg-color);
+                padding: 10px;
+                border-radius: 10px;
             }
         }
 
-        @media (max-width: 576px) {
+        /* Large devices (desktops, 992px and up) */
+        @media (min-width: 992px) and (max-width: 1200px) {
             .hero-content h1 {
-                font-size: 1.8rem;
+                font-size: 3rem;
             }
 
-            .contact-form {
+            .container {
+                max-width: 960px;
+            }
+        }
+
+        /* Extra large devices (large desktops, 1200px and up) */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1140px;
+            }
+
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        /* Special adjustments for mobile landscape */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .video-background {
+                min-height: 150vh;
+            }
+
+            .hero-content {
+                padding: 50px 0;
+            }
+        }
+
+        /* Fix for mobile menu backdrop */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background: var(--nav-bg-color);
                 padding: 20px;
+                border-radius: 10px;
+                margin-top: 10px;
+                backdrop-filter: blur(10px);
+            }
+
+            .navbar-nav .nav-link {
+                margin: 8px 0;
+                text-align: center;
             }
         }
     </style>
@@ -418,13 +656,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#home">Home</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#services">Services</a>
+                    <a class="nav-link" href="#education">Education</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#skills">Skills</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#projects">Projects</a>
@@ -445,7 +683,7 @@
     </video>
     <div class="container">
         <div class="hero-content">
-            <h1>I'm Dilsha Perera</h1>
+            <h1>Hello, I'm Dilsha Perera</h1>
             <p>Web Developer & UI/UX Designer</p>
             <a href="#projects" class="btn btn-primary">View My Work</a>
         </div>
@@ -459,74 +697,23 @@
             <h2>About Me</h2>
         </div>
         <div class="row about-content">
-            <div class="col-lg-4 animated">
+            <div class="col-lg-4 animated" data-aos="fade-right" data-aos-duration="1000">
                 <div class="profile-img">
-                    <img src="" alt="Profile Image">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Profile Image">
                 </div>
             </div>
-            <div class="col-lg-8 animated">
-                <div class="about-text">
-                    <h3>Full Stack Developer</h3>
-                    <p>I'm a passionate software developer with over 5 years of experience in building web applications. I specialize in JavaScript technologies across the whole stack (React.js, Node.js, Express.js, MongoDB).</p>
+            <div class="col-lg-8 animated" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <div class="about-card">
+                    <h3>Who Am I</h3>
+                    <p>I'm a passionate web developer with a knack for turning ideas into interactive, engaging web experiences. With a blend of creativity and technical expertise, I specialize in crafting websites that not only look stunning but also perform seamlessly.</p>
 
-                    <div class="skills">
-                        <div class="skill-bar">
-                            <h6>Web Development <span class="float-end">90%</span></h6>
-                            <div class="progress">
-                                <div class="progress-bar" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-bar">
-                            <h6>UI/UX Design <span class="float-end">85%</span></h6>
-                            <div class="progress">
-                                <div class="progress-bar" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-bar">
-                            <h6>Mobile Development <span class="float-end">75%</span></h6>
-                            <div class="progress">
-                                <div class="progress-bar" style="width: 75%"></div>
-                            </div>
-                        </div>
+                    <div class="about-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Services Section -->
-<section id="services" class="services">
-    <div class="container">
-        <div class="section-title">
-            <h2>My Services</h2>
-        </div>
-        <div class="row">
-            <div class="col-md-4 animated">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h4>Web Development</h4>
-                    <p>Custom website development with modern technologies, responsive design, and SEO-friendly structure.</p>
-                </div>
-            </div>
-            <div class="col-md-4 animated">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h4>App Development</h4>
-                    <p>Cross-platform mobile application development using React Native and Flutter for iOS and Android.</p>
-                </div>
-            </div>
-            <div class="col-md-4 animated">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h4>UI/UX Design</h4>
-                    <p>User-centered design approach creating intuitive and engaging interfaces that enhance user experience.</p>
                 </div>
             </div>
         </div>
@@ -564,7 +751,7 @@
                     </div>
                     <div class="project-info p-4">
                         <h4>Task Management App</h4>
-                        <p> Express, MySQL</p>
+                        <p>Express, MySQL</p>
                     </div>
                 </div>
             </div>
@@ -627,9 +814,9 @@
             <a href="#"><i class="fab fa-github"></i></a>
         </div>
         <div class="footer-links">
-            <a href="#home">Home</a>
             <a href="#about">About</a>
-            <a href="#services">Services</a>
+            <a href="#education">Education</a>
+            <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
         </div>
@@ -639,8 +826,13 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <!-- Custom JS -->
 <script>
+    // Initialize AOS
+    AOS.init();
+
     // Navbar background change on scroll
     window.addEventListener('scroll', function() {
         const navbar = document.querySelector('.navbar');
@@ -690,6 +882,13 @@
                     top: targetElement.offsetTop - 70,
                     behavior: 'smooth'
                 });
+
+                // Close mobile menu when a link is clicked
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    navbarToggler.click();
+                }
             }
         });
     });
