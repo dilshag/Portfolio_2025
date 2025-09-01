@@ -62,7 +62,7 @@
         }
 
         /* Hero Section */
-        .hero-section {
+      /*  .hero-section {
             background: linear-gradient(135deg, #6c63ff 0%, #4a44c9 100%);
             color: white;
             min-height: 100vh;
@@ -83,6 +83,52 @@
             background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.1' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,138.7C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
             background-size: cover;
             background-position: bottom;
+        }*/
+        .hero-section {
+            background: transparent; /* Remove gradient background */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        #bgVideo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+           /* background: rgba(42, 42, 114, 0.7); !* Uses your --dark-color with transparency *!*/
+            z-index: 1;
+        }
+        .video-background {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        }
+
+        /* Ensure content stays above video */
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .hero-content {
@@ -97,15 +143,18 @@
             font-weight: 700;
             margin-bottom: 20px;
             animation: fadeInDown 1s ease;
+            color: #6c757d;
         }
 
         .hero-content p {
             font-size: 1.5rem;
+            font-weight: 500;
             margin-bottom: 30px;
             animation: fadeInUp 1s ease;
+            color: #6c757d;
         }
 
-        .hero-image {
+       /* .hero-image {
             width: 250px;
             height: 250px;
             border-radius: 50%;
@@ -120,8 +169,36 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }*/
+
+        .hero-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+             border: 5px solid rgba(61, 67, 77, 0.9);
+           /* border: 5px solid rgba(255, 255, 255, 0.2);*/
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease;
+            background-color: #6c63ff; /* Fallback color matching your theme */
+            position: relative;
+            opacity: 80%;
         }
 
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            object-position: 80% 100%;  /*Adjust this based on your image
+             Alternative approach if object-fit still causes issues
+          */  position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+        }
         .btn-primary {
             background-color: white;
             color: var(--primary-color);
@@ -912,7 +989,41 @@
     </div>
 </nav>
 
+
+
 <!-- Home Section -->
+<section id="home" class="hero-section">
+    <!-- Video Background -->
+    <div class="video-background">
+        <video autoplay muted loop playsinline id="bgVideo">
+            <source src="https://www.pexels.com/download/video/4496268/" type="video/mp4">
+            <!-- Add additional source formats for better browser compatibility -->
+            <source src="your-video-file.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <div class="container">
+        <div class="hero-content">
+
+            <div class="hero-image" data-aos="flip-left" data-aos-duration="2000" data-aos-delay="300">
+              <!--  <img src="https://i.imgur.com/UE8swI6.jpeg" alt="Dilsha Perera">-->
+                <img src="assets/images/WhatsApp%20Image%202025-08-28%20at%209.55.14%20PM.jpeg" alt="Dilsha Perera">
+
+            </div>
+            <h1>Hello, I'm Dilsha Perera</h1>
+            <p>Web Developer & UI/UX Designer</p>
+            <a href="#projects" class="btn btn-primary">View My Work</a>
+        </div>
+    </div>
+</section>
+
+
+
+<!--
+
+&lt;!&ndash; Home Section &ndash;&gt;
 <section id="home" class="hero-section">
     <div class="container">
         <div class="hero-content">
@@ -925,6 +1036,7 @@
         </div>
     </div>
 </section>
+-->
 
 <!-- About Section -->
 <section id="about" class="about">
