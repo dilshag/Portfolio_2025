@@ -248,7 +248,95 @@
             border-radius: 2px;
         }
 
-        /* About Section */
+        /* About Section Improvements */
+        .about {
+            padding: 100px 0;
+        }
+
+        .profile-img {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeInLeft 1s ease;
+            max-width: 300px; /* Limit maximum width */
+            margin: 0 auto; /* Center the image */
+        }
+
+        .profile-img img {
+            width: 100%;
+            transition: all 0.5s ease;
+        }
+
+        .profile-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            animation: fadeInRight 1s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Vertically center content */
+        }
+
+        .about-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .about-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .about-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #555;
+        }
+
+        .about-social {
+            margin-top: auto; /* Push social icons to bottom */
+            padding-top: 20px;
+        }
+
+        .about-social a {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            margin-right: 12px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .about-social a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+        }
+
+
+       /* !* About Section *!
         .about-content {
             display: flex;
             align-items: center;
@@ -306,7 +394,7 @@
         .about-social a:hover {
             background: var(--secondary-color);
             transform: translateY(-3px);
-        }
+        }*/
 
         /* Education Section - New Timeline Design */
         .education {
@@ -878,6 +966,24 @@
             .timeline-marker {
                 left: 30px;
             }
+            .about-content {
+                flex-direction: column;
+            }
+
+            .profile-img {
+                margin-bottom: 40px;
+                max-width: 280px;
+            }
+
+            .about-card {
+                text-align: center;
+            }
+
+            .about-card h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
         }
 
         @media (max-width: 768px) {
@@ -913,6 +1019,25 @@
             .timeline-content h4 {
                 font-size: 1.2rem;
             }
+            .about-card {
+                padding: 25px;
+            }
+
+            .about-card h3 {
+                font-size: 1.6rem;
+            }
+
+            .about-card p {
+                font-size: 1rem;
+            }
+
+            .about-social a {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                margin-right: 10px;
+            }
+
         }
 
         @media (max-width: 576px) {
@@ -953,6 +1078,24 @@
             .timeline-marker i {
                 font-size: 1.2rem;
             }
+        }
+
+            @media (max-width: 576px) {
+                .about {
+                    padding: 80px 0;
+                }
+
+                .profile-img {
+                    max-width: 240px;
+                }
+
+                .about-card {
+                    padding: 20px;
+                }
+
+                .about-card h3 {
+                    font-size: 1.5rem;
+                }
         }
     </style>
 </head>
@@ -1037,7 +1180,6 @@
     </div>
 </section>
 -->
-
 <!-- About Section -->
 <section id="about" class="about">
     <div class="container">
@@ -1046,18 +1188,17 @@
         </div>
         <div class="row about-content">
             <div class="col-lg-4">
-                <div class="profile-img">
+                <div class="profile-img" data-aos="fade-right" data-aos-duration="1000">
                     <img src="https://i.imgur.com/jj7HPT3.png" alt="Profile Image">
                 </div>
             </div>
             <div class="col-lg-8">
-                <div class="about-card">
+                <div class="about-card" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                     <h3>Who Am I</h3>
                     <p>I'm a passionate web developer with a knack for turning ideas into interactive, engaging web experiences. With a blend of creativity and technical expertise, I specialize in crafting websites that not only look stunning but also perform seamlessly.</p>
 
                     <div class="about-social">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
-                       <!-- <a href="#"><i class="fab fa-twitter"></i></a>-->
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-github"></i></a>
@@ -1114,7 +1255,7 @@
             </div>
         </div>
     </div>
-</section>
+</section><br>
 
 <!-- Skills Section -->
 <section id="skills" class="skills">
